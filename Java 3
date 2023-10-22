@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+
+          Scanner scanner = new Scanner(System.in);
+          System.out.print("Enter a Roman Numeral: ");
+          String input = scanner.nextLine();
+        boolean isPangram = isPangram(input);
+        if (isPangram) {
+            System.out.println("The input is a pangram.");
+        } else {
+            System.out.println("The input is not a pangram.");
+        }
+    }
+
+    public static boolean isPangram(String str) {
+        boolean[] alphabet = new boolean[26]; // Assuming only lowercase letters
+        int count = 0;
+
+        for (char ch : str.toCharArray()) {
+            if (Character.isLetter(ch)) {
+                int index = Character.toLowerCase(ch) - 'a';
+                if (!alphabet[index]) {
+                    alphabet[index] = true;
+                    count++;
+                }
+            }
+        }
+
+        return count == 26;
+    }
+}
